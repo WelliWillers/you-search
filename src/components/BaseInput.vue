@@ -10,7 +10,6 @@
                     v-on="listeners"
                     :type="type"
                     v-bind="$attrs"
-                    v-mask="mask"
                     :prepend-inner-icon="prependIcon"
                     :error-messages="errors"
                     :label="label"
@@ -73,9 +72,6 @@ export default {
             type: String,
             description: "Input type",
             default: "text"
-        },
-        mask: {
-            type: [ String, Function ],
         },
         appendIcon: {
             type: String,
