@@ -1,17 +1,16 @@
 import { api } from '../../services/youtube_api';
 
-const getVideosBySearchName = async ({commit}) => {
+const getVideosBySearchName = async ({commit}, data) => {
 
     const payload = {
         "part": "snippet",
         "order": "viewCount",
         "type": "video",
-        "q": "felipe"
+        "q": data
     }
     
     return await api.get('/search', {params: payload})
         .then((res) => {
-            alert('deu bom')
             console.log(res)
             // const videos = res.data;
 

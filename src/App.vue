@@ -1,7 +1,28 @@
 <template>
   <v-app>
-    <v-main>
+    <div class="full-screem d-flex flex-column justify-space-between">
       <router-view/>
-    </v-main>
+      <bottom-base />
+    </div>
   </v-app>
 </template>
+
+<script>
+export default {
+  
+}
+</script>
+
+<style lang="scss" scoped>
+  .full-screem {
+    height: 100vh;
+    width: 100vw;
+
+    .h-100 {
+      height: 100%;
+    }
+    .w-100 {
+      width: 100vw;
+    }
+  }
+</style>
