@@ -12,24 +12,14 @@
             <base-input-validate
               :rules="{ required: true }"
               type="text"
-              name="search"
+              name="Search"
+              clearable
+              append-icon="mdi-map-marker"
               class="white--text"
               label="Search your band or a music."
               prependIcon="mdi-account"
               v-model="search"
-              @change="sendSearch"
             />
-            <v-btn
-              fab
-              dark
-              type="submit"
-              large
-              color="primary"
-            >
-              <v-icon dark>
-                mdi-magnify
-              </v-icon>
-            </v-btn>
           </div>
         </v-form>
 
@@ -60,7 +50,7 @@ export default {
         }).catch(() => {
           this.$toast.error('Error.')
         }).finally(() => {
-          this.$toast.success('Finish.')
+          
         })
     }
   },
