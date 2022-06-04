@@ -13,10 +13,8 @@ const getVideosBySearchName = async ({commit}, data) => {
     return await api.get('/search', {params: payload})
         .then((res) => {
             console.log(res)
-            // const videos = res.data;
-
-            // commit('SET_VIDEOS_FOUND', videos)
-            
+            const videos = res.data.items;
+            commit('SET_VIDEOS_FOUND', videos)
         }).catch(error => {
             return window._Vue.$tools.prepareErrorMessasge(error)
         })

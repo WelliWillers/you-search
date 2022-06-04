@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .full-screem {
     height: 100vh;
     width: 100vw;
@@ -22,7 +22,7 @@ export default {
       height: 100%;
     }
     .w-100 {
-      width: 100vw;
+      width: 100%;
     }
   }
 </style>

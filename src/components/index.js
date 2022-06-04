@@ -1,6 +1,6 @@
 import BaseInput from './BaseInput.vue';
 import Logo from './Logo.vue';
-import BottomBase from './BottomBase.vue';
+import BottomBase from './BottomBaseNavigation.vue';
 
 const GlobalComponents = {
   install(Vue) {

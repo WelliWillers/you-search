@@ -1,7 +1,7 @@
-// const SET_USER_ACCOUNT_SELECTED = (state, selectedAccount) => {
-//     state.selectedAccount = selectedAccount
-// }
-
+const SET_VIDEOS_FOUND = (state, videos) => {
+    state.videos = videos
+}
 
 export {
+    SET_VIDEOS_FOUND
 }

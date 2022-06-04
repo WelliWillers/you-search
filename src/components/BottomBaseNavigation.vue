@@ -4,7 +4,7 @@
         color="white"
         background-color="red"
         fixed
-        shift
+        
     >
         <v-btn>
             <span>Search new</span>
@@ -24,7 +24,6 @@
 <script>
     export default {
         name: "bottom-base",
-
 
         data() {
             return {
