@@ -10,7 +10,3 @@ export default {
     name: "logo"
 }
 </script>
-
-<style>
-
-</style>

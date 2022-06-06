@@ -6,15 +6,13 @@
         fixed
         
     >
-        <v-btn>
+        <v-btn :to="{ path: '/' }">
             <span>Search new</span>
-
             <v-icon>mdi-history</v-icon>
         </v-btn>
 
-        <v-btn>
+        <v-btn :to="{ path: '/favorites' }">
             <span>Favorites</span>
-
             <v-icon>mdi-heart</v-icon>
         </v-btn>
 
