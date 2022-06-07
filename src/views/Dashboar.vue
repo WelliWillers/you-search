@@ -29,9 +29,13 @@
         <card-video v-for="(video, index) in videos" :key="index" :video="video"/>
       </div>
 
-      <div v-if="search">
-        <div v-if="search.length >= 15 && videos.length == 0">
+      <div v-else>
+        <p>No search applies, search for any song or band in the field above.</p>
+      </div>
 
+      <div v-if="search">
+        
+        <div v-if="search.length >= 15 && videos.length == 0">
           <h3>No videos found at the moment <b v-if="search">for the search: {{search}}</b></h3>
         </div>
       </div>
