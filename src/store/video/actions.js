@@ -12,7 +12,6 @@ const getVideosBySearchName = async ({commit}, data) => {
     
     return await api.get('/search', {params: payload})
         .then((res) => {
-            console.log(res)
             const videos = res.data.items;
             commit('SET_VIDEOS_FOUND', videos)
         }).catch(error => {
@@ -20,6 +19,37 @@ const getVideosBySearchName = async ({commit}, data) => {
         })
 }
 
+const addToFavorite = async ({commit}, video) => {
+    if(localStorage.getItem('favorites')){
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+
+        const newfavorites = [
+            ...favorites,
+            video
+        ]
+        
+        localStorage.setItem('favorites', JSON.stringify(newfavorites))
+        
+        commit('SET_FAVORITES', newfavorites)
+    } else {
+        const favorites = [
+            video
+        ]
+        localStorage.setItem('favorites', JSON.stringify(favorites))
+        commit('SET_FAVORITES', favorites)
+    }
+}
+
+const loadFavorite = async ({commit}, video) => {
+    if(localStorage.getItem('favorites')){
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+        
+        commit('SET_FAVORITES', favorites)
+    } 
+}
+
 export {
-    getVideosBySearchName
+    getVideosBySearchName,
+    addToFavorite,
+    loadFavorite
 }

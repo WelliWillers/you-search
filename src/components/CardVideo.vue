@@ -23,7 +23,7 @@
             <v-btn
                 color="blue"
                 class="white--text"
-                @click.prevent="vaforitateVideo(video.id.videoId)"
+                @click.prevent="vaforitateVideo(video)"
             >
                 <v-icon>mdi-cards-heart-outline</v-icon>
             </v-btn>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     name: "card-video",
 
@@ -39,6 +40,25 @@ export default {
         video: {
             type: Object,
             require: true
+        }
+    },
+
+    methods: {
+        ...mapActions('video', ['addToFavorite']),
+        ...mapActions('loader', ['setLoading']),
+
+        vaforitateVideo(video){
+            this.setLoading(true);
+            this.addToFavorite(video)
+                .then(() => {
+                    this.$toast.success('Video favorited with success!')
+                })
+                .catch((error) => {
+                    this.$toast.success(error.message)
+                })
+                .finally(() => {
+                    this.setLoading(false);
+                })
         }
     }
 

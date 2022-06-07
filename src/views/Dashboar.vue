@@ -1,14 +1,10 @@
 <template>
-  <div class="white pb-16 d-flex align-center space-between" :class="{'h-100': !haveResults}">
+  <div class="white pb-16 d-flex align-center space-between">
     
     <v-container class="text-center py-4">
 
-      <v-row class="w-100 d-flex align-center m-0" :class="{'flex-row justify-space-between': haveResults, 'flex-column': !haveResults}">
-        <v-col md="4" class="texte-left">
-          <logo class="pb-5" />
-        </v-col>
-
-        <v-col md="4">
+      <v-row class="w-100 d-flex align-center mx-0 text-center">
+          <logo class="py-3 w-100" />
           <validation-observer class="w-100" v-slot="{handleSubmit}" ref="formValidator">
 
             <v-form class="form__validate__style white--text w-100" role="form" @submit.prevent="handleSubmit(sendSearch)">
@@ -26,7 +22,6 @@
             </v-form>
 
           </validation-observer>
-        </v-col>
       </v-row>
 
 
@@ -74,10 +69,6 @@ export default {
         }).finally(() => {
           this.setLoading(false)
         })
-    },
-
-    vaforitateVideo(id){
-      localStorage.setItem()
     }
   },
 
@@ -88,7 +79,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .videos {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

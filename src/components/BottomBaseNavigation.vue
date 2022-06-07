@@ -4,9 +4,8 @@
         color="white"
         background-color="red"
         fixed
-        
     >
-        <v-btn :to="{ path: '/' }">
+        <v-btn class="" :to="{ path: '/' }">
             <span>Search new</span>
             <v-icon>mdi-history</v-icon>
         </v-btn>
