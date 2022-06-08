@@ -18,7 +18,12 @@ const getVideosBySearchName = async ({commit}, data) => {
             const videos = res.data.items;
             const nextPageToken = res.data.nextPageToken;
 
-            commit('SET_VIDEOS_FOUND', videos)
+            if(!data.nextPageToken) {
+                commit('SET_VIDEOS_FOUND', videos)
+            } else {
+                commit('SET_VIDEOS_FOUND_ON', videos)    
+            }
+            
             commit('SET_NEXT_PAGE_TOKEN', nextPageToken)
         }).catch(error => {
             return window._Vue.$tools.prepareErrorMessasge(error)
