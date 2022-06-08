@@ -5,6 +5,8 @@
     >
         <template v-slot:activator="{ on, attrs }">
             <v-btn
+                large
+                rounded
                 color="red"
                 class="white--text"
                 v-bind="attrs"
@@ -14,7 +16,9 @@
             </v-btn>
         </template>
         <template v-slot:default="dialog">
-            <v-card>
+            <v-card 
+                class="rounded-xl"
+            >
                 <v-toolbar
                     color="red"
                     dark
@@ -30,11 +34,13 @@
                         allowfullscreen
                     />
                 </v-card-text>
-                <v-card-actions class="justify-end">
+                <v-card-actions class="justify-center">
                     <v-btn
                         solid
+                        rounded
+                        large
                         color="red"
-                        class="white--text"
+                        class="white--text mb-5 px-4"
                         @click="dialog.value = false"
                     >Close</v-btn>
                 </v-card-actions>

@@ -4,9 +4,9 @@
         width="100%"
     >
         <v-img
-        class="white--text align-end"
-        height="250px"
-        :src="video.snippet.thumbnails.high.url"
+            class="white--text align-end"
+            height="250px"
+            :src="video.snippet.thumbnails.high.url"
         />
 
         <v-card-subtitle class="pb-0">
@@ -18,14 +18,41 @@
         </v-card-text>
 
         <v-card-actions class="d-flex justify-center pb-5 gap__1rem">
-            <watch-video :videoId="video.id.videoId" :title="video.snippet.title" />
+            <watch-video v-if="video.id.videoId" :videoId="video.id.videoId" :title="video.snippet.title" />
 
             <v-btn
+                large
+                rounded
+                v-if="video.id.videoId"
                 color="blue"
-                class="white--text"
+                class="white--text px-3"
                 @click.prevent="vaforitateVideo(video)"
             >
                 <v-icon>mdi-cards-heart-outline</v-icon>
+            </v-btn>
+            
+            <v-btn
+                large
+                rounded
+                v-if="video.id.playlistId"
+                color="red"
+                class="white--text px-3"
+                :href="`https://www.youtube.com/watch?v=${video.etag}`"
+                target="blank"
+            >
+                Watch playlist on youtube
+            </v-btn>
+
+            <v-btn
+                large
+                rounded
+                v-if="video.id.channelId"
+                color="red"
+                class="white--text px-3"
+                :href="`https://www.youtube.com/channel/${video.id.channelId}`"
+                target="blank"
+            >
+                Go to channel
             </v-btn>
         </v-card-actions>
     </v-card>

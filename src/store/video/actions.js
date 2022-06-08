@@ -5,15 +5,21 @@ const getVideosBySearchName = async ({commit}, data) => {
     const payload = {
         part: "snippet",
         order: "viewCount",
-        type: "video",
+        maxResults: 20,
+        type: data.type ? data.type : 'video',
+        // videoEmbeddable: data.type == "video" ? true : false,
         key: "AIzaSyBki-aoGwHPy3O2WjK0F06oKvmjQ_1C3FY",
-        q: data
+        q: data.search,
+        pageToken: data.nextPageToken ? data.nextPageToken : null
     }
     
     return await api.get('/search', {params: payload})
         .then((res) => {
             const videos = res.data.items;
+            const nextPageToken = res.data.nextPageToken;
+
             commit('SET_VIDEOS_FOUND', videos)
+            commit('SET_NEXT_PAGE_TOKEN', nextPageToken)
         }).catch(error => {
             return window._Vue.$tools.prepareErrorMessasge(error)
         })

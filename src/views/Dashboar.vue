@@ -8,25 +8,54 @@
           <validation-observer class="w-100" v-slot="{handleSubmit}" ref="formValidator">
 
             <v-form class="form__validate__style white--text w-100" role="form" @submit.prevent="handleSubmit(sendSearch)">
-                <base-input-validate
-                  :rules="{ required: true }"
-                  type="text"
-                  name="Search"
-                  clearable
-                  append-icon="mdi-map-marker"
-                  class="white--text w-100"
-                  label="Search your band or a music."
-                  prependIcon="mdi-account"
-                  v-model="search"
-                />
+                
+              <v-row class="m-0 pb-8">
+
+                <v-col sm="12" lg="4">
+                  <base-select-validate
+                    rules="required"
+                    type="text"
+                    name="Type"
+                    :items="items"
+                    clearable
+                    append-icon="mdi-map-marker"
+                    class="white--text w-100"
+                    label="Select the type of your search."
+                    prependIcon="mdi-account"
+                    v-model="typeofsearch"
+                  />
+                </v-col>
+
+                <v-col sm="12" lg="6">
+                  <base-input-validate
+                    :rules="{ required: true }"
+                    type="text"
+                    name="Search"
+                    clearable
+                    append-icon="mdi-map-marker"
+                    class="white--text w-100"
+                    label="Search your band or a music."
+                    prependIcon="mdi-account"
+                    v-model="search"
+                  />
+                </v-col>
+
+                <v-col sm="12" lg="2">
+                  <v-btn type="submit" color="red" class="white--text" block depressed rounded x-large>
+                    Search {{typeofsearch}}
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-form>
 
           </validation-observer>
       </v-row>
 
 
-      <div v-if="haveResults || videos.length > 0" class="videos pt-4">
-        <card-video v-for="(video, index) in videos" :key="index" :video="video"/>
+      <div v-if="haveResults || videos.length > 0">
+        <div class="videos pt-4">
+          <card-video v-for="(video, index) in videos" :key="index" :video="video"/>
+        </div>
       </div>
 
       <div v-else>
@@ -38,6 +67,12 @@
         <div v-if="search.length >= 15 && videos.length == 0">
           <h3>No videos found at the moment <b v-if="search">for the search: {{search}}</b></h3>
         </div>
+      </div>
+
+      <div v-if="nextPageToken" class="py-6">
+        <v-btn color="red" depressed large class="white--text" rounded @click="loadMoreVideos">
+          Load more videos
+        </v-btn>
       </div>
         
     </v-container>
@@ -53,6 +88,12 @@ export default {
       search: null,
       haveResults: false,
       nothingFound: false,
+      typeofsearch: null,
+      items: [
+        {title: "Video", value:"video"},
+        {title: "Playlist", value:"playlist"},
+        {title: "Channel", value:"channel"}
+      ]
     }
   },
 
@@ -62,8 +103,32 @@ export default {
     ...mapActions('loader', ['setLoading']),
 
     sendSearch() {
+      const payload = {
+        search: this.search,
+        type: this.typeofsearch
+      }
       this.setLoading(true)
-      this.getVideosBySearchName(this.search)
+      this.getVideosBySearchName(payload)
+        .then((res) => {
+          this.$toast.success('Success.')
+          this.haveResults = true
+        }).catch(() => {
+          this.nothingFound = true
+          this.$toast.error('Error.')
+        }).finally(() => {
+          this.setLoading(false)
+        })
+    },
+
+    loadMoreVideos(){
+      const payload = {
+        search: this.search,
+        nextPageToken: this.nextPageToken,
+        type: this.typeofsearch
+      }
+
+      this.setLoading(true)
+      this.getVideosBySearchName(payload)
         .then((res) => {
           this.$toast.success('Success.')
           this.haveResults = true
@@ -77,7 +142,7 @@ export default {
   },
 
   computed: {
-    ...mapState('video', ['videos'])
+    ...mapState('video', ['videos', 'nextPageToken'])
   }
   
 }
@@ -86,9 +151,9 @@ export default {
 <style lang="scss">
   .videos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     width: 100%;
-    max-width: 100%;
+    max-width: 100% !important;
   }
 </style>

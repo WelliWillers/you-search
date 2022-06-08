@@ -1,9 +1,10 @@
 <template>
-    <v-container class="text-center py-4"> 
+    <v-container class="text-center pt-4 pb-16"> 
         <div class="py-3">
-            <h1>Your favorites</h1>    
+            <h1>Your favorites videos</h1>    
         </div>  
         <div v-if="favorites.length > 0" class="videos py-4">
+            
             <card-video v-for="(video, index) in favorites" :key="index" :video="video"/>
         </div>
         <div v-else>

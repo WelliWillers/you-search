@@ -2,16 +2,19 @@
     <v-bottom-navigation
         :value="value"
         color="white"
+        light
+        hide-on-scroll
         background-color="red"
         fixed
+        grow
     >
         <v-btn class="" :to="{ path: '/' }">
-            <span>Search new</span>
+            <h3>Search new</h3>
             <v-icon>mdi-history</v-icon>
         </v-btn>
 
         <v-btn :to="{ path: '/favorites' }">
-            <span>Favorites</span>
+            <h3>Favorites</h3>
             <v-icon>mdi-heart</v-icon>
         </v-btn>
 
