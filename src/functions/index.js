@@ -1,7 +1,18 @@
+import moment from 'moment';
+
 export const tools = {
 
-    prepareErrorMessasge: (error, defaultMessage) => {
+    converteData: (data) => {
+        return moment(data, 'YYYY-MM-DD hh:mm:ss').locale('pt-br').format('DD/MM/YYYY - LT')
+    },
+
+
+    prepareErrorMessasge: (error = [], defaultMessage) => {
         if (!error.response) {
+            throw new Error(defaultMessage)
+        }
+        
+        if (error == []) {
             throw new Error(defaultMessage)
         }
     

@@ -5,7 +5,7 @@
         </div>  
         <div v-if="favorites.length > 0" class="videos py-4">
             
-            <card-video v-for="(video, index) in favorites" :key="index" :video="video"/>
+            <card-video v-for="(video, index) in favorites" isFavorite :key="index" :video="video"/>
         </div>
         <div v-else>
             <p>No favorite videos yet</p>
@@ -17,10 +17,8 @@
 import { mapState } from 'vuex'
 
 export default {
-
     computed: {
         ...mapState('video', ['favorites'])
     }
-
 }
 </script>

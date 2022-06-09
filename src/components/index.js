@@ -1,9 +1,10 @@
-import BaseInput from './BaseInput.vue';
-import BaseSelect from './BaseSelect.vue';
-import Logo from './Logo.vue';
-import BottomBase from './BottomBaseNavigation.vue';
-import WhachVideo from './WhachVideo.vue';
-import CardVideo from './CardVideo.vue';
+import BaseInput from './Forms/BaseInput.vue';
+import BaseSelect from './Forms/BaseSelect.vue';
+import Logo from './Header/Logo.vue';
+import BottomBase from './Navigation/BottomBaseNavigation.vue';
+import WhachVideo from './Video/WhachVideo.vue';
+import CardVideo from './Video/CardVideo.vue';
+import ButtonClear from './Navigation/ButtonClear.vue';
 
 const GlobalComponents = {
   install(Vue) {
@@ -13,6 +14,7 @@ const GlobalComponents = {
     Vue.component(BottomBase.name, BottomBase);
     Vue.component(WhachVideo.name, WhachVideo);
     Vue.component(CardVideo.name, CardVideo);
+    Vue.component(ButtonClear.name, ButtonClear);
   }
 }
 export default GlobalComponents;

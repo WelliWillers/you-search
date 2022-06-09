@@ -1,9 +1,16 @@
 <template>
   <v-app>
     <div class="full-screem d-flex flex-column justify-space-between">
+      <div class="text-center">
+        <logo class="py-3 w-100" />
+      </div>
+      
       <slide-y-up-transition :duration="500" origin="center top" mode="out-in">
-        <router-view/>
+        <router-view />
       </slide-y-up-transition>
+
+      <button-claer />
+      
       <bottom-base />
 
       <v-overlay :value="loading">

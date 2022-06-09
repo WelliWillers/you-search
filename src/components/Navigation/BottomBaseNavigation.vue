@@ -3,7 +3,7 @@
         :value="value"
         color="white"
         light
-        hide-on-scroll
+        :hide-on-scroll="$route.path == 'favorites' ? false : true"
         background-color="red"
         fixed
         grow
@@ -32,7 +32,3 @@
         },
     }
 </script>
-
-<style>
-
-</style>

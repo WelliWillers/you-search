@@ -12,7 +12,8 @@
                 v-bind="attrs"
                 v-on="on"
             >
-                <v-icon>mdi-play-circle</v-icon>
+                Watch
+                <!-- <v-icon>mdi-play-circle</v-icon> -->
             </v-btn>
         </template>
         <template v-slot:default="dialog">

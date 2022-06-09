@@ -5,16 +5,17 @@
     >
         <v-img
             class="white--text align-end"
-            height="250px"
+            height="300px"
             :src="video.snippet.thumbnails.high.url"
         />
 
         <v-card-subtitle class="pb-0">
-            {{video.snippet.publishedAt}}
+            {{$tools.converteData(video.snippet.publishedAt)}}
         </v-card-subtitle>
 
         <v-card-text class="text--primary">
             <v-card-title>{{video.snippet.title}}</v-card-title>
+            <p>Channel: {{video.snippet.channelTitle}}</p>
         </v-card-text>
 
         <v-card-actions class="d-flex justify-center pb-5 gap__1rem">
@@ -28,7 +29,8 @@
                 class="white--text px-3"
                 @click.prevent="vaforitateVideo(video)"
             >
-                <v-icon>mdi-cards-heart-outline</v-icon>
+                {{isFavorite ? "Unfavorite" : "Favorite"}}
+                <!-- <v-icon>mdi-cards-heart-outline</v-icon> -->
             </v-btn>
             
             <v-btn
@@ -67,25 +69,40 @@ export default {
         video: {
             type: Object,
             require: true
+        },
+        isFavorite: {
+            type: Boolean
         }
     },
 
     methods: {
-        ...mapActions('video', ['addToFavorite']),
+        ...mapActions('video', ['addToFavorite', 'removeFromFavorites']),
         ...mapActions('loader', ['setLoading']),
 
         vaforitateVideo(video){
             this.setLoading(true);
-            this.addToFavorite(video)
-                .then(() => {
-                    this.$toast.success('Video favorited with success!')
-                })
-                .catch((error) => {
-                    this.$toast.success(error.message)
-                })
-                .finally(() => {
-                    this.setLoading(false);
-                })
+
+            if(this.isFavorite){
+                this.removeFromFavorites(video.id.videoId)
+                    .then(() => {
+                        this.$toast.success('Successfully unfavorable video!')
+                    })
+                    .finally(() => {
+                        this.setLoading(false)
+                    })
+            } else {
+                this.addToFavorite(video)
+                    .then(() => {
+                        this.$toast.success('Video favorited successfully!')
+                    })
+                    .catch((error) => {
+                        this.$toast.error(error.message)
+                    })
+                    .finally(() => {
+                        this.setLoading(false);
+                    })
+            }
+
         }
     }
 

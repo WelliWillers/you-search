@@ -34,14 +34,25 @@ const addToFavorite = async ({commit}, video) => {
     if(localStorage.getItem('favorites')){
         const favorites = JSON.parse(localStorage.getItem('favorites'))
 
-        const newfavorites = [
+        const videoToFavorite = favorites.filter(f => {
+            return f.id.videoId === video.id.videoId
+        })
+
+        if(videoToFavorite.length > 0) {
+            const error = {
+                status: 404
+            }
+            return window._Vue.$tools.prepareErrorMessasge(error, 'This video already exists in your favorites list')
+        }
+
+        const newFavorites = [
             ...favorites,
             video
         ]
         
-        localStorage.setItem('favorites', JSON.stringify(newfavorites))
+        localStorage.setItem('favorites', JSON.stringify(newFavorites))
         
-        commit('SET_FAVORITES', newfavorites)
+        commit('SET_FAVORITES', newFavorites)
     } else {
         const favorites = [
             video
@@ -51,7 +62,7 @@ const addToFavorite = async ({commit}, video) => {
     }
 }
 
-const loadFavorite = async ({commit}, video) => {
+const loadFavorite = async ({commit}) => {
     if(localStorage.getItem('favorites')){
         const favorites = JSON.parse(localStorage.getItem('favorites'))
         
@@ -59,8 +70,30 @@ const loadFavorite = async ({commit}, video) => {
     } 
 }
 
+const removeFromFavorites = async ({commit}, videoId) => {
+    if(localStorage.getItem('favorites')){
+        const favorites = JSON.parse(localStorage.getItem('favorites'))
+        
+        const newFavorites = favorites.filter(favorite => {
+            return favorite.id.videoId != videoId
+        })
+
+        localStorage.setItem('favorites', JSON.stringify(newFavorites))
+        commit('SET_FAVORITES', newFavorites)
+    } 
+}
+
+const clearSearchFilter = async ({commit}, videoId) => {
+    
+    commit('SET_VIDEOS_FOUND', [])
+    commit('SET_NEXT_PAGE_TOKEN', '')
+    
+}
+
 export {
     getVideosBySearchName,
     addToFavorite,
-    loadFavorite
+    loadFavorite,
+    removeFromFavorites,
+    clearSearchFilter
 }

@@ -4,14 +4,13 @@
     <v-container class="text-center py-4">
 
       <v-row class="w-100 d-flex align-center mx-0 text-center">
-          <logo class="py-3 w-100" />
           <validation-observer class="w-100" v-slot="{handleSubmit}" ref="formValidator">
 
             <v-form class="form__validate__style white--text w-100" role="form" @submit.prevent="handleSubmit(sendSearch)">
                 
               <v-row class="m-0 pb-8">
 
-                <v-col sm="12" lg="4">
+                <v-col base="12" sm="12" lg="4">
                   <base-select-validate
                     rules="required"
                     type="text"

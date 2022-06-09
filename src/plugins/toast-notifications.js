@@ -3,7 +3,7 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 const options = {
-    position: "top-right",
+    position: "bottom-center",
     timeout: 5000,
     closeOnClick: true,
     pauseOnFocusLoss: true,

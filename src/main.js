@@ -10,11 +10,14 @@ import vuetify from './plugins/vuetify'
 import toast from './plugins/toast-notifications'
 import veevalidate from './plugins/veevalidate'
 
+import {tools} from './functions'
+Vue.prototype.$tools = tools
+
 Vue.use(GlobalComponents)
 
 Vue.config.productionTip = false
 
-new Vue({
+window._Vue = new Vue({
   router,
   vuetify,
   toast,
