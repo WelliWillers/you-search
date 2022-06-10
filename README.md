@@ -2,7 +2,7 @@
   <h1>:red_circle: YouSearch</h1>
   
   <p>
-    This project was developed with the aim of listing the video sharched in a API of the Youtube </br>
+    This project was developed with the aim of listing videos based on user search, making use of a Youtube API </br>
   </p>
   
   <img style="width:100%;" src="https://github.com/WelliWillers/you-search/blob/main/public/capa.png?raw=true">
@@ -43,6 +43,8 @@ Note: to work in a standard environment to what was used in the initial developm
 </div>
 
 ```bash
+    # Firts don't forget to generate your environment variables
+
     #clon the repository
     $ git clone https://github.com/WelliWillers/you-search.git
 
