@@ -5,18 +5,34 @@
         :right="true"
         fixed
         direction="top"
+        open-on-hover
         transition="slide-y-reverse-transition"
     >
         <template v-slot:activator>
             <v-btn
                 fab
                 large
-                @click.prevent="clearVideos"
                 color="red darken-2 white--text"
             >
-                Clear
+                More
             </v-btn>
         </template>
+        <v-btn
+            fab
+            large
+            @click.prevent="clearVideos"
+            color="blue darken-2 white--text"
+        >
+            Clear
+        </v-btn>
+        <v-btn
+            fab
+            large
+            href="/#start"
+            color="orange darken-2 white--text"
+        >
+            Top
+        </v-btn>
     </v-speed-dial>
 </template>
 

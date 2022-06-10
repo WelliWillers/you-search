@@ -1,7 +1,6 @@
 <template>
     <v-card
-        class="rounded-xl"
-        width="100%"
+        class="rounded-xl w-100"
     >
         <v-img
             class="white--text align-end"
@@ -39,7 +38,7 @@
                 v-if="video.id.playlistId"
                 color="red"
                 class="white--text px-3"
-                :href="`https://www.youtube.com/watch?v=${video.etag}`"
+                @click.prevent="openPlaylist(video.id.playlistId)"
                 target="blank"
             >
                 Watch playlist on youtube
@@ -61,7 +60,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
     name: "card-video",
 
@@ -78,6 +77,7 @@ export default {
     methods: {
         ...mapActions('video', ['addToFavorite', 'removeFromFavorites']),
         ...mapActions('loader', ['setLoading']),
+        ...mapActions('playlist', ['getPlaylistFirstVideoInformations']),
 
         vaforitateVideo(video){
             this.setLoading(true);
@@ -103,7 +103,22 @@ export default {
                     })
             }
 
+        },
+
+        openPlaylist(playlistId){
+            this.setLoading(true)
+            this.getPlaylistFirstVideoInformations(playlistId)
+                .then(() => {
+                    window.open(`https://www.youtube.com/watch?v=${this.videoPlaylist.snippet.resourceId.videoId}&list=${this.videoPlaylist.snippet.playlistId}&start_radio=1&ab_channel=${this.videoPlaylist.snippet.videoOwnerChannelTitle.replace(/\s/g, '')}`)
+                })
+                .finally(() => {
+                    this.setLoading(false)
+                })
         }
+    },
+
+    computed: {
+        ...mapState('playlist', ['videoPlaylist'])
     }
 
 }

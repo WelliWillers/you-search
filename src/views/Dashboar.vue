@@ -1,5 +1,5 @@
 <template>
-  <div class="white pb-16 d-flex align-center space-between">
+  <div class="white pb-16 d-flex align-center space-between overflow-y-auto">
     
     <v-container class="text-center py-4">
 
@@ -150,9 +150,26 @@ export default {
 <style lang="scss">
   .videos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     width: 100%;
     max-width: 100% !important;
+  }
+
+  @media (min-width: 768px) {
+    .videos {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
+  @media (min-width: 1265px) {
+    .videos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1900px) {
+    .videos {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="overflow-y-hidden">
     <div class="full-screem d-flex flex-column justify-space-between">
       <div class="text-center">
         <logo class="py-3 w-100" />
@@ -55,6 +55,7 @@ export default {
 <style lang="scss">
   .full-screem {
     // height: 100vh;
+    overflow: hidden;
     width: 100vw;
 
     .h-100 {

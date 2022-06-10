@@ -1,5 +1,5 @@
 <template>
-    <h1 class="dark--text">
+    <h1 id="start" class="dark--text">
         You
         <span class="red--text">Search</span>
     </h1>
