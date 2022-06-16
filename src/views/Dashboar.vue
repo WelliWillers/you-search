@@ -153,23 +153,23 @@ export default {
     gap: 1rem;
     width: 100%;
     max-width: 100% !important;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 
-  @media (min-width: 768px) {
-    .videos {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
+  // @media (min-width: 768px) {
+  //   .videos {
+  //   }
+  // }
   
-  @media (min-width: 1265px) {
-    .videos {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  // @media (min-width: 1265px) {
+  //   .videos {
+  //     grid-template-columns: repeat(2, 1fr);
+  //   }
+  // }
 
-  @media (min-width: 1900px) {
-    .videos {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
+  // @media (min-width: 1900px) {
+  //   .videos {
+  //     grid-template-columns: repeat(3, 1fr);
+  //   }
+  // }
 </style>
